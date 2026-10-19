@@ -6,62 +6,60 @@ using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
 using System.Text.Json;
-using Azure.AI.Projects.Agents;
 
-namespace OpenAI
+namespace Azure.AI.Projects.Agents
 {
-    /// <summary>
-    /// Set of 16 key-value pairs that can be attached to an object. This can be
-    /// useful for storing additional information about the object in a structured
-    /// format, and querying for objects via API or the dashboard.
-    /// Keys are strings with a maximum length of 64 characters. Values are strings
-    /// with a maximum length of 512 characters.
-    /// </summary>
-    public partial class InternalMetadataContainer : IJsonModel<InternalMetadataContainer>
+    /// <summary> The LiveMCPToolChoiceParam. </summary>
+    public partial class LiveMCPToolChoiceParam : IJsonModel<LiveMCPToolChoiceParam>
     {
+        /// <summary> Initializes a new instance of <see cref="LiveMCPToolChoiceParam"/> for deserialization. </summary>
+        internal LiveMCPToolChoiceParam()
+        {
+        }
+
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected virtual InternalMetadataContainer PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
+        protected virtual LiveMCPToolChoiceParam PersistableModelCreateCore(BinaryData data, ModelReaderWriterOptions options)
         {
-            string format = options.Format == "W" ? ((IPersistableModel<InternalMetadataContainer>)this).GetFormatFromOptions(options) : options.Format;
+            string format = options.Format == "W" ? ((IPersistableModel<LiveMCPToolChoiceParam>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
             {
                 case "J":
                     using (JsonDocument document = JsonDocument.Parse(data, ModelSerializationExtensions.JsonDocumentOptions))
                     {
-                        return DeserializeInternalMetadataContainer(document.RootElement, options);
+                        return DeserializeLiveMCPToolChoiceParam(document.RootElement, options);
                     }
                 default:
-                    throw new FormatException($"The model {nameof(InternalMetadataContainer)} does not support reading '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(LiveMCPToolChoiceParam)} does not support reading '{options.Format}' format.");
             }
         }
 
         /// <param name="options"> The client options for reading and writing models. </param>
         protected virtual BinaryData PersistableModelWriteCore(ModelReaderWriterOptions options)
         {
-            string format = options.Format == "W" ? ((IPersistableModel<InternalMetadataContainer>)this).GetFormatFromOptions(options) : options.Format;
+            string format = options.Format == "W" ? ((IPersistableModel<LiveMCPToolChoiceParam>)this).GetFormatFromOptions(options) : options.Format;
             switch (format)
             {
                 case "J":
                     return ModelReaderWriter.Write(this, options, AzureAIProjectsAgentsContext.Default);
                 default:
-                    throw new FormatException($"The model {nameof(InternalMetadataContainer)} does not support writing '{options.Format}' format.");
+                    throw new FormatException($"The model {nameof(LiveMCPToolChoiceParam)} does not support writing '{options.Format}' format.");
             }
         }
 
         /// <param name="options"> The client options for reading and writing models. </param>
-        BinaryData IPersistableModel<InternalMetadataContainer>.Write(ModelReaderWriterOptions options) => PersistableModelWriteCore(options);
+        BinaryData IPersistableModel<LiveMCPToolChoiceParam>.Write(ModelReaderWriterOptions options) => PersistableModelWriteCore(options);
 
         /// <param name="data"> The data to parse. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        InternalMetadataContainer IPersistableModel<InternalMetadataContainer>.Create(BinaryData data, ModelReaderWriterOptions options) => PersistableModelCreateCore(data, options);
+        LiveMCPToolChoiceParam IPersistableModel<LiveMCPToolChoiceParam>.Create(BinaryData data, ModelReaderWriterOptions options) => PersistableModelCreateCore(data, options);
 
         /// <param name="options"> The client options for reading and writing models. </param>
-        string IPersistableModel<InternalMetadataContainer>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
+        string IPersistableModel<LiveMCPToolChoiceParam>.GetFormatFromOptions(ModelReaderWriterOptions options) => "J";
 
         /// <param name="writer"> The JSON writer. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        void IJsonModel<InternalMetadataContainer>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        void IJsonModel<LiveMCPToolChoiceParam>.Write(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
             writer.WriteStartObject();
             JsonModelWriteCore(writer, options);
@@ -72,16 +70,17 @@ namespace OpenAI
         /// <param name="options"> The client options for reading and writing models. </param>
         protected virtual void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
-            string format = options.Format == "W" ? ((IPersistableModel<InternalMetadataContainer>)this).GetFormatFromOptions(options) : options.Format;
+            string format = options.Format == "W" ? ((IPersistableModel<LiveMCPToolChoiceParam>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(InternalMetadataContainer)} does not support writing '{format}' format.");
+                throw new FormatException($"The model {nameof(LiveMCPToolChoiceParam)} does not support writing '{format}' format.");
             }
-            foreach (var item in AdditionalProperties)
-            {
-                writer.WritePropertyName(item.Key);
-                writer.WriteStringValue(item.Value);
-            }
+            writer.WritePropertyName("type"u8);
+            writer.WriteStringValue(Type);
+            writer.WritePropertyName("server_label"u8);
+            writer.WriteStringValue(ServerLabel);
+            writer.WritePropertyName("name"u8);
+            writer.WriteStringValue(Name);
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
             {
                 foreach (var item in _additionalBinaryDataProperties)
@@ -101,45 +100,56 @@ namespace OpenAI
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        InternalMetadataContainer IJsonModel<InternalMetadataContainer>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => JsonModelCreateCore(ref reader, options);
+        LiveMCPToolChoiceParam IJsonModel<LiveMCPToolChoiceParam>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options) => JsonModelCreateCore(ref reader, options);
 
         /// <param name="reader"> The JSON reader. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected virtual InternalMetadataContainer JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
+        protected virtual LiveMCPToolChoiceParam JsonModelCreateCore(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
         {
-            string format = options.Format == "W" ? ((IPersistableModel<InternalMetadataContainer>)this).GetFormatFromOptions(options) : options.Format;
+            string format = options.Format == "W" ? ((IPersistableModel<LiveMCPToolChoiceParam>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
             {
-                throw new FormatException($"The model {nameof(InternalMetadataContainer)} does not support reading '{format}' format.");
+                throw new FormatException($"The model {nameof(LiveMCPToolChoiceParam)} does not support reading '{format}' format.");
             }
             using JsonDocument document = JsonDocument.ParseValue(ref reader);
-            return DeserializeInternalMetadataContainer(document.RootElement, options);
+            return DeserializeLiveMCPToolChoiceParam(document.RootElement, options);
         }
 
         /// <param name="element"> The JSON element to deserialize. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        internal static InternalMetadataContainer DeserializeInternalMetadataContainer(JsonElement element, ModelReaderWriterOptions options)
+        internal static LiveMCPToolChoiceParam DeserializeLiveMCPToolChoiceParam(JsonElement element, ModelReaderWriterOptions options)
         {
             if (element.ValueKind == JsonValueKind.Null)
             {
                 return null;
             }
-            IDictionary<string, string> additionalProperties = new ChangeTrackingDictionary<string, string>();
+            string @type = default;
+            string serverLabel = default;
+            string name = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
-                switch (prop.Value.ValueKind)
+                if (prop.NameEquals("type"u8))
                 {
-                    case JsonValueKind.String:
-                        additionalProperties[prop.Name] = prop.Value.GetString();
-                        continue;
+                    @type = prop.Value.GetString();
+                    continue;
+                }
+                if (prop.NameEquals("server_label"u8))
+                {
+                    serverLabel = prop.Value.GetString();
+                    continue;
+                }
+                if (prop.NameEquals("name"u8))
+                {
+                    name = prop.Value.GetString();
+                    continue;
                 }
                 if (options.Format != "W")
                 {
                     additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
-            return new InternalMetadataContainer(additionalProperties, additionalBinaryDataProperties);
+            return new LiveMCPToolChoiceParam(@type, serverLabel, name, additionalBinaryDataProperties);
         }
     }
 }

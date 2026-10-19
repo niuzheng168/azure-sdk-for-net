@@ -12,3 +12,8 @@ namespace Azure.AI.Projects.Agents;
 [Experimental("AAIP001")] internal partial class BetaVoiceAgentsTelephonyGetTelephonyCallsAsyncCollectionResult { }
 [Experimental("AAIP001")] internal partial class BetaVoiceAgentsConversationsGetAgentConversationItemsCollectionResult { }
 [Experimental("AAIP001")] internal partial class BetaVoiceAgentsConversationsGetAgentConversationItemsAsyncCollectionResult { }
+[Experimental("AAIP001")] public partial class AgentEndpointLiveConversations { }
+[Experimental("AAIP001")] internal partial class AgentEndpointLiveConversationsGetLiveAgentConversationsCollectionResult { }
+[Experimental("AAIP001")] internal partial class AgentEndpointLiveConversationsGetLiveAgentConversationsAsyncCollectionResult { }
+[Experimental("AAIP001")] internal partial class AgentEndpointLiveConversationsGetLiveAgentConversationItemsCollectionResult { }
+[Experimental("AAIP001")] internal partial class AgentEndpointLiveConversationsGetLiveAgentConversationItemsAsyncCollectionResult { }
